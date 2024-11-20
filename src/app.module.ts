@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoginModule } from './login/login.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserSignUpEntity } from './entity/login.user.signup.entity';
 
 @Module({
   imports: [LoginModule,
@@ -12,8 +13,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: 3307,
       username: 'root',
       password: '',
-      database: 'boardDB',
-      entities: [],
+      database: 'loginDB',
+      entities: [UserSignUpEntity],
       synchronize: true,
     })
   ],
