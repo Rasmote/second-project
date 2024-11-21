@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { LoginModule } from './login/login.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserSignUpEntity } from './entity/login.user.signup.entity';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [LoginModule,
@@ -16,7 +17,12 @@ import { UserSignUpEntity } from './entity/login.user.signup.entity';
       database: 'loginDB',
       entities: [UserSignUpEntity],
       synchronize: true,
-    })
+
+    }),
+    JwtModule.register({
+      secret: 'TestSecretKey',
+      signOptions: { expiresIn: '90s' },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
